@@ -1,30 +1,3 @@
-
-from tkcalendar import Calendar
-import tkinter as tk
-from tkinter import ttk
-from tkinter import *
-
-root = tk.Tk()
-# ask user what type of even they want to add and when. 
-class Cal:
-    def __init__(self, master):
-        myFrame = Frame(master)
-        myFrame.pack()
-    
-        self.myButton = ttk.Button(master, text='Calendar with events', command=self.Events).pack(padx=10, pady=10)
-
-    def Events(self):
-
-        top = tk.Toplevel(root)
-
-        cal = Calendar(top, selectmode='none')
-        date = cal.datetime.today()
-
-        cal.pack(fill="both", expand=True)
-        
-
-
-e = Cal(root)
 from tkinter import *
 from tkinter.font import Font
 from tkinter import filedialog
@@ -46,7 +19,7 @@ class Event_Planner:
         myFrame.pack()
     # Defining font
         self.my_font = Font(
-            family = "Brush Script MT",
+            family = "Times New Roman",
             size = 30, 
             weight = "bold")
     # Create Frame
@@ -203,4 +176,27 @@ class Event_Planner:
         self.my_list.delete(0, END)
 
 e = Event_Planner(root)
+from tkcalendar import Calendar
+import tkinter as tk
+from tkinter import ttk
+from tkinter import *
+
+root = tk.Tk()
+# ask user what type of even they want to add and when. 
+class Cal:
+    def __init__(self, master):
+        myFrame = Frame(master)
+        myFrame.pack()
+    
+        self.myButton = ttk.Button(master, text='Calendar with events', command=self.Events).pack(padx=10, pady=10)
+
+    def Events(self):
+
+        top = tk.Toplevel(root)
+
+        cal = Calendar(top, selectmode='none')
+        date = cal.datetime.today()
+
+        cal.pack(fill="both", expand=True)
+e = Cal(root)
 root.mainloop()
