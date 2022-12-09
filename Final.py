@@ -2,7 +2,6 @@ from tkinter import *
 from tkinter.font import Font
 from tkinter import filedialog
 import pickle
-from my_list import my_list
 root = Tk()
 root.title('Calendar Event List')
 root.geometry("600x600")
@@ -20,7 +19,7 @@ class Event_Planner:
     # Defining font
         self.my_font = Font(
             family = "Times New Roman",
-            size = 30, 
+            size = 20, 
             weight = "bold")
     # Create Frame
         self.my_frame = Frame(root)
@@ -123,80 +122,93 @@ class Event_Planner:
 
 
     def save_list(self):
-        self.file_name = filedialog.asksaveasfilename(
+            file_name = filedialog.asksaveasfilename(
             initialdir="C:/gui/data",
             title="Save File",
             filetypes=(
                 ("Dat Files", "*.dat"), 
                 ("All Files", "*.*"))
             )
-        if self.file_name:
-            if self.file_name.endswith(".dat"):
-                pass
-            else:
-                self.file_name = f'{self.file_name}.dat'
-            # delete crossed items before saving
-            self.count = 0
-            while self.count < self.my_list.size():
-                if self.my_list.itemcget(self.count, "fg") == "#dedede":
-                    self.my_list.delete(self.my_list.index(self.count))
+            if file_name:
+                if file_name.endswith(".dat"):
+                    pass
                 else:
-                    self.count += 1
+                    file_name = f'{file_name}.dat'
+            # delete crossed items before saving
+            count = 0
+            while count < self.my_list.size():
+                if self.my_list.itemcget(count, "fg") == "#dedede":
+                    self.my_list.delete(self.my_list.index(count))
+                else:
+                    count += 1
             # grab all the stuff from list
-            self.stuff = my_list.get(0,END)
+            stuff = self.my_list.get(0,END)
             # OPen the file
-            self.output_file = open(self.file_name, 'wb')
+            output_file = open(file_name, 'wb')
 
             # Actually add teh stuff to teh file
-            self.pickle.dump(self.stuff, self.output_file)
+            pickle.dump(stuff, output_file)
 
 
                 
     def open_list(self):
-        self.file_name = filedialog.askopenfilename(
+            file_name = filedialog.askopenfilename(
             initialdir="C:/gui/data",
             title="Save File",
             filetypes=(
                 ("Dat Files", "*.dat"), 
                 ("All Files", "*.*"))
             ) 
-        if self.file_name:
+            if file_name:
             #delete currently open list
-            self.my_list.delete(0, END)
+                self.my_list.delete(0, END)
             #open the file:
-            self.input_file = open(self.file_name, 'rb')
+                input_file = open(file_name, 'rb')
 
             #load the data
-            self.stuff = pickle.load(self.input_file)
+            stuff = pickle.load(input_file)
 
             #output the stuff
-            for self.item in self.stuff:
-                self.my_list.insert(END, self.item)
+            for item in stuff:
+                self.my_list.insert(END, item)
+                
     def clear_list(self):
         self.my_list.delete(0, END)
 
 e = Event_Planner(root)
+
+
+
 from tkcalendar import Calendar
 import tkinter as tk
 from tkinter import ttk
 from tkinter import *
 
-root = tk.Tk()
-# ask user what type of even they want to add and when. 
+
+ 
 class Cal:
     def __init__(self, master):
         myFrame = Frame(master)
         myFrame.pack()
-    
-        self.myButton = ttk.Button(master, text='Calendar with events', command=self.Events).pack(padx=10, pady=10)
-
-    def Events(self):
 
         top = tk.Toplevel(root)
-
         cal = Calendar(top, selectmode='none')
         date = cal.datetime.today()
+        
+        ans = 1
+        while ans != 0:
+            create = int(input('How many days from today is your reminder? '))
+            color = input('Is your reminder for a meeting or for an assignment? ')
+            cal.calevent_create(date+ cal.timedelta(days=create), 'Reminder', color)
+            ans = int(input('Do you wish to set another reminder? (yes(1), no(0) '))
+       
+     
+        cal.tag_config('meeting', background='purple', foreground='yellow')
+        cal.tag_config('assignment', background='green', foreground='yellow')
 
         cal.pack(fill="both", expand=True)
+        ttk.Label(top, text="Light Blue = Today\nGreen = Assignments \nPurple = Meetings").pack()
+
+root = tk.Tk()
 e = Cal(root)
 root.mainloop()

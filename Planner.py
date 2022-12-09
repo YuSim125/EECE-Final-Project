@@ -2,7 +2,6 @@ from tkinter import *
 from tkinter.font import Font
 from tkinter import filedialog
 import pickle
-from my_list import my_list
 
     
 
