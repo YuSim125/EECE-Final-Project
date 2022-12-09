@@ -5,6 +5,7 @@ import pickle
 root = Tk()
 root.title('Calendar Event List')
 root.geometry("600x600")
+
 class Event_Planner:
     
     """ 
@@ -187,14 +188,20 @@ from tkinter import *
 
  
 class Cal:
+    """
+    Creating a calendar that we can use
+    to color code certain reminders that
+    the user will input.
+    """
     def __init__(self, master):
         myFrame = Frame(master)
         myFrame.pack()
-
+        # creating the structure to the calendar
         top = tk.Toplevel(root)
         cal = Calendar(top, selectmode='none')
         date = cal.datetime.today()
-        
+        # while loop to figure out if the user wants to add more reminders or not
+        # and display them onto the calendar
         ans = 1
         while ans != 0:
             create = int(input('How many days from today is your reminder? '))
@@ -202,11 +209,12 @@ class Cal:
             cal.calevent_create(date+ cal.timedelta(days=create), 'Reminder', color)
             ans = int(input('Do you wish to set another reminder? (yes(1), no(0) '))
        
-     
+        # creates the coloring for specific remiders from the user
         cal.tag_config('meeting', background='purple', foreground='yellow')
         cal.tag_config('assignment', background='green', foreground='yellow')
 
         cal.pack(fill="both", expand=True)
+        # labeling the color coded boxes to let the user know which is which.
         ttk.Label(top, text="Light Blue = Today\nGreen = Assignments \nPurple = Meetings").pack()
 
 root = tk.Tk()
