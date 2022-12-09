@@ -257,4 +257,8 @@ root.mainloop()
 
 class TestCal(unittest.TestCase):
     def test_open_list(self):
-        self.listopen(open_list(root),True)
+        self.test_open_list(open_list(root),True)
+    def test_delete_event(self):
+        self.test_delete_event(delete_event(root),True)
+    def test_add_event(self):
+        self.test_add_event(add_event(root),True)
