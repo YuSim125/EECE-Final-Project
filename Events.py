@@ -4,7 +4,9 @@ import tkinter as tk
 from tkinter import ttk
 from tkinter import *
 
-
+class Input:
+    def __init__(self) -> None:
+        pass
  
 class Cal:
     def __init__(self, master):

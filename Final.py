@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter.font import Font
 from tkinter import filedialog
 import pickle
+
 root = Tk()
 root.title('Calendar Event List')
 root.geometry("600x600")
@@ -38,11 +39,7 @@ class Event_Planner:
             activestyle="none"
             )    
         self.my_list.pack(side=LEFT, fill = BOTH)
-    # # create dummy list
-    # stuff = ["I love Ling", "Rule the world"]
-    # # add dummy list to listbox
-    # for item in stuff:
-    #     my_list.insert(END, item)
+
 
     # CREATE scroll bar
         self.my_scrollbar = Scrollbar(self.my_frame)
@@ -193,8 +190,8 @@ class Cal:
     to color code certain reminders that
     the user will input.
     """
-    def __init__(self, master):
-        myFrame = Frame(master)
+    def __init__(self, root):
+        myFrame = Frame(root)
         myFrame.pack()
         # creating the structure to the calendar
         top = tk.Toplevel(root)
