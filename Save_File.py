@@ -69,6 +69,10 @@ class Save_File:
  
     # function
     def save_list(self):
+            """
+            saves the file of the current list to 
+            the files of the user's computer
+            """
             file_name = filedialog.asksaveasfilename(
             initialdir="C:/gui/data",
             title="Save File",

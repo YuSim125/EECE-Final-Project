@@ -1,15 +1,18 @@
 from tkinter import *
 from tkinter.font import Font
+from tkinter import filedialog
+import pickle
 
 root = Tk()
 root.title('Calendar Event List')
 root.geometry("600x600")
 
-class Cross_Events:
+class Delete_Cross_Events:
     
     """ 
-    Turns the added events to different text so that
-    they are viewed as crossed out.
+    Event planner where you can add and delete and 
+    have other options to work on your
+    events. 
 
     """
     def __init__(self,root):
@@ -53,22 +56,22 @@ class Cross_Events:
     #create a button frame
         self.button_frame =Frame(root)
         self.button_frame.pack(pady=20)
-
-        self.cross_off_button = Button(self.button_frame, text="Cross off Event", command=self.cross_off_item)
-        self.cross_off_button.grid(row=0, column=2)
+        self.delete_crossed_button = Button(self.button_frame, text="Delete Crossed Event", command=self.delete_crossed_item)
+        self.delete_crossed_button.grid(row=0, column=4)
     
-    def cross_off_item(self):
+    #function
+    def delete_crossed_item(self):
         """
-        crosses out any item on the list
-        that the user selects and marks it
-        as a finished task.
+        deletes any selected events that 
+        have the font of the crossed out
+        event
         """
-        #cross off item
-        self.my_list.itemconfig(
-            self.my_list.curselection(),
-            fg="#dedede")
-        #get rid of slection bar
-        self.my_list.selection_clear(0, END)
+        self.count = 0
+        while self.count < self.my_list.size():
+            if self.my_list.itemcget(self.count, "fg") == "#dedede":
+                self.my_list.delete(self.my_list.index(self.count))
+            else:
+                self.count += 1
 
-e = Cross_Events(root)
+e = Delete_Cross_Events(root)
 root.mainloop()

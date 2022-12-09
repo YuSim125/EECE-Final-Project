@@ -3,12 +3,13 @@ from tkcalendar import Calendar
 import tkinter as tk
 from tkinter import ttk
 from tkinter import *
-
-class Input:
-    def __init__(self) -> None:
-        pass
  
 class Cal:
+    """
+    Creating a calendar that we can use
+    to color code certain reminders that
+    the user will input.
+    """
     def __init__(self, master):
         myFrame = Frame(master)
         myFrame.pack()

@@ -69,6 +69,10 @@ class Open_File:
     
     #functions       
     def open_list(self):
+            """
+            opens a saved file from the user's
+            computer of any past planners.
+            """
             file_name = filedialog.askopenfilename(
             initialdir="C:/gui/data",
             title="Save File",

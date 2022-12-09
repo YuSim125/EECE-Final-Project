@@ -1,15 +1,17 @@
 from tkinter import *
 from tkinter.font import Font
 
+
 root = Tk()
 root.title('Calendar Event List')
 root.geometry("600x600")
 
-class Cross_Events:
+class Clear_List:
     
     """ 
-    Turns the added events to different text so that
-    they are viewed as crossed out.
+    Event planner where you can add and delete and 
+    have other options to work on your
+    events. 
 
     """
     def __init__(self,root):
@@ -54,21 +56,23 @@ class Cross_Events:
         self.button_frame =Frame(root)
         self.button_frame.pack(pady=20)
 
-        self.cross_off_button = Button(self.button_frame, text="Cross off Event", command=self.cross_off_item)
-        self.cross_off_button.grid(row=0, column=2)
-    
-    def cross_off_item(self):
-        """
-        crosses out any item on the list
-        that the user selects and marks it
-        as a finished task.
-        """
-        #cross off item
-        self.my_list.itemconfig(
-            self.my_list.curselection(),
-            fg="#dedede")
-        #get rid of slection bar
-        self.my_list.selection_clear(0, END)
+        # create menu
+        self.my_menu = Menu(root)
+        root.config(menu=self.my_menu)     
 
-e = Cross_Events(root)
+        #add items to the menu
+        self.file_menu = Menu(self.my_menu, tearoff=False)
+        self.my_menu.add_cascade(label="File", menu=self.file_menu)
+        # Add dropdown items
+        self.file_menu.add_command(label="Clear List", command=self.clear_list)
+    
+    #function:                
+    def clear_list(self):
+        """
+        clears the current list of the 
+        planner and makes it all blank again
+        """
+        self.my_list.delete(0, END)
+
+e = Clear_List(root)
 root.mainloop()

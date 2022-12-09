@@ -58,6 +58,12 @@ class Delete_Events:
 
     #functions
     def delete_item(self):
+        """
+        deleting item that has been marked by the user's 
+        cursor and with the press of the button
+        the item deletes itself. 
+        
+        """
         self.my_list.delete(ANCHOR)
 
 e = Delete_Events(root)

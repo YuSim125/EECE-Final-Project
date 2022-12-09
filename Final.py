@@ -87,14 +87,28 @@ class Event_Planner:
     
     #functions
     def delete_item(self):
+        """
+        deleting item that has been marked by the user's 
+        cursor and with the press of the button
+        the item deletes itself. 
+        
+        """
         self.my_list.delete(ANCHOR)
 
     def add_item(self):
-        
+        """
+        adds in any event that the user types in
+        through the bar
+        """
         self.my_list.insert(END, self.my_entry.get())
         self.my_entry.delete(0, END)
 
     def cross_off_item(self):
+        """
+        crosses out any item on the list
+        that the user selects and marks it
+        as a finished task.
+        """
         #cross off item
         self.my_list.itemconfig(
             self.my_list.curselection(),
@@ -103,6 +117,11 @@ class Event_Planner:
         self.my_list.selection_clear(0, END)
 
     def uncross_item(self):
+        """
+        button that if selected a crossed event
+        it will change back its font to show that
+        the event has been uncrossed.
+        """
         #cross off item
         self.my_list.itemconfig(
             self.my_list.curselection(),
@@ -111,6 +130,11 @@ class Event_Planner:
         self.my_list.selection_clear(0, END)
 
     def delete_crossed_item(self):
+        """
+        deletes any selected events that 
+        have the font of the crossed out
+        event
+        """
         self.count = 0
         while self.count < self.my_list.size():
             if self.my_list.itemcget(self.count, "fg") == "#dedede":
@@ -120,6 +144,10 @@ class Event_Planner:
 
 
     def save_list(self):
+            """
+            saves the file of the current list to 
+            the files of the user's computer
+            """
             file_name = filedialog.asksaveasfilename(
             initialdir="C:/gui/data",
             title="Save File",
@@ -150,6 +178,10 @@ class Event_Planner:
 
                 
     def open_list(self):
+            """
+            opens a saved file from the user's
+            computer of any past planners.
+            """
             file_name = filedialog.askopenfilename(
             initialdir="C:/gui/data",
             title="Save File",
@@ -171,6 +203,10 @@ class Event_Planner:
                 self.my_list.insert(END, item)
                 
     def clear_list(self):
+        """
+        clears the current list of the 
+        planner and makes it all blank again
+        """
         self.my_list.delete(0, END)
 
 e = Event_Planner(root)

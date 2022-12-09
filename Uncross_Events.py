@@ -60,6 +60,11 @@ class Uncross_Events:
        
     #functions
     def uncross_item(self):
+        """
+        button that if selected a crossed event
+        it will change back its font to show that
+        the event has been uncrossed.
+        """
         #cross off item
         self.my_list.itemconfig(
             self.my_list.curselection(),

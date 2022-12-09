@@ -59,7 +59,10 @@ class Add_Events:
         self.add_button.grid(row=0, column=0)        
       
     def add_item(self):
-        
+        """
+        adds in any event that the user types in
+        through the bar
+        """
         self.my_list.insert(END, self.my_entry.get())
         self.my_entry.delete(0, END)
 
