@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter.font import Font
 from tkinter import filedialog
 import pickle
+import unittest
 
 root = Tk()
 root.title('Calendar Event List')
@@ -253,3 +254,7 @@ class Cal:
 root = tk.Tk()
 e = Cal(root)
 root.mainloop()
+
+class TestCal(unittest.TestCase):
+    def test_open_list(self):
+        self.listopen(open_list(root),True)
